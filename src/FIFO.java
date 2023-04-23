@@ -1,8 +1,8 @@
 public class FIFO<E> implements IQueue<E> {
 
-     OneWayLinkedListWithHead<E> lista;
+     OneWayLinkedList<E> lista;
     public FIFO() {
-        lista = new OneWayLinkedListWithHead<>();
+        lista = new OneWayLinkedList<>();
     }
     @Override
     public boolean isEmpty() {

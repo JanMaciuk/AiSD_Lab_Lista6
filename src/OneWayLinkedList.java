@@ -1,5 +1,5 @@
 
-public class OneWayLinkedListWithHead<E>{
+public class OneWayLinkedList<E>{
     private class Element{
 
         private E value;
@@ -25,17 +25,16 @@ public class OneWayLinkedListWithHead<E>{
     }
 
     Element head=null;
+    Element tail=null;
 
-    public OneWayLinkedListWithHead(){}
+    public OneWayLinkedList(){}
 
     public boolean isEmpty(){
         return head==null;
     }
 
      
-    public void clear() {
-        head=null;
-    }
+    public void clear() { head=null; tail=null; }
 
      
     public int size() {
@@ -65,10 +64,12 @@ public class OneWayLinkedListWithHead<E>{
             head=newElem;
             return true;
         }
-        Element tail=head;
-        while(tail.getNext()!=null)
-            tail=tail.getNext();
+        if (tail==null) {  //Wykona się tylko za pierwszym razem lub po wyzerowaniu listy
+            tail=head;
+            while(tail.getNext()!=null) { tail=tail.getNext(); }
+        }
         tail.setNext(newElem);
+        tail=newElem;
         return true;
     }
      
@@ -84,6 +85,7 @@ public class OneWayLinkedListWithHead<E>{
         if(index==0){
             E retValue=head.getValue();
             head=head.getNext();
+            if (head==null) tail=null;
             return retValue;
         }
         Element actElem=getElement(index-1);
