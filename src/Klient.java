@@ -9,9 +9,9 @@ public class Klient {
         this.zamowienia = zamowienia;
     }
 
-    public void zamow() {
-        Magazyn.GlownaKolejkaKlientow.enqueue(this);
-        System.out.println("Klient numer " + this.nazwaKlienta + " złożył zamówienie.");
+    public void zamow(Magazyn magazyn) {
+        magazyn.GlownaKolejkaKlientow.enqueue(this);
+        System.out.println(this.nazwaKlienta + " złożył zamówienie.");
     }
     public static Klient losowyKlient() {
         String nazwa = "Klient " + ThreadLocalRandom.current().nextInt(1,100);
